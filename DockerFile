@@ -1,14 +1,5 @@
-# Start with the official Nginx image
 FROM nginx
-
-# Set the working directory to the default Nginx document root
-WORKDIR /usr/share/nginx/html
-
-# Copy the contents of the current directory into the container at the working directory
-COPY . .
-
-# Expose port 80 so that the container can be accessed from the host
-EXPOSE 80
-
-# Start Nginx when the container starts
+RUN apt-get -y update && apt-get -y install nginx
+COPY index.html /usr/share/nginx/html
+EXPOSE 8080
 CMD ["nginx", "-g", "daemon off;"]
